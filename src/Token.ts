@@ -35,11 +35,20 @@ export class MPCtoken extends SmartContract {
         this.totalAmountInCirculation.set(0);
     }
     
-    @method mint(){
+    @method mint(
+        recieverAddress: PublicKey,
+        amount: UInt64,
+        signature: Signature
+    ){
+        let totalAmountInCirculation = this.totalAmountInCirculation.get();
+        this.totalAmountInCirculation.assertEquals(totalAmountInCirculation);
 
+        let newTotalAmountInCirculation = totalAmountInCirculation.add(amount);
+        signature.verify(this.address, amount.toFields().concat(recieverAddress.toFields())).assertTrue();
+        this.token.mint({address: recieverAddress, amount})
+        this.totalAmountInCirculation.set(newTotalAmountInCirculation);
     }
 
     @method sendTokens(){
         
-    }
 }
