@@ -29,8 +29,10 @@ export class MPCtoken extends SmartContract {
         });
     }
 
-    @method init(){
-
+    @method init(){ // initialize the token & only called once
+        super.init();
+        this.account.tokenSymbol.set(tokenSymbol);
+        this.totalAmountInCirculation.set(0);
     }
     
     @method mint(){
