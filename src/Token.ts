@@ -63,7 +63,7 @@ export class MPCtoken extends SmartContract {
 
     @method AssetProof(owner: PublicKey){
         let account = Account(owner, this.token.id)
-        account.balance.assertBetween( UInt64.from(10), UInt64.from(1000))
+        account.balance.assertBetween( UInt64.from(10), UInt64.from(100000000))
     }
 
 }
