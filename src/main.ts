@@ -26,8 +26,7 @@ if (proofsEnabled) {
 
 console.log('compiled');
 
-
-
+// deploying testing
 console.log('deploying...');
 const contract = new MPCtoken(zkAppAddress);
 const deploy_txn = await Mina.transaction(deployerAccount.toPublicKey(), () => {
@@ -38,3 +37,32 @@ await deploy_txn.prove();
 await deploy_txn.sign([deployerAccount]).send();
 
 console.log('deployed');
+
+
+// minting testing
+console.log('minting...');
+
+const mintAmount = UInt64.from(10);
+
+const mintSignature = Signature.create(
+    zkAppPrivateKey,
+    mintAmount.toFields().concat(zkAppAddress.toFields())
+);
+
+const mint_txn = await Mina.transaction(deployerAccount.toPublicKey(), () => {
+    AccountUpdate.fundNewAccount(deployerAccount.toPublicKey());
+    contract.mint(zkAppAddress, mintAmount, mintSignature);
+});
+
+await mint_txn.prove();
+await mint_txn.sign([deployerAccount]).send();
+
+console.log('minted');
+
+console.log(
+    contract.totalAmountInCirculation.get() +
+    ' ' +
+    Mina.getAccount(zkAppAddress).tokenSymbol
+);
+
+
