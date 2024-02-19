@@ -66,3 +66,22 @@ console.log(
 );
 
 
+// sending testing
+console.log('sending...');
+
+const sendAmount = UInt64.from(3);
+
+const send_txn = await Mina.transaction(deployerAccount.toPublicKey(), () => {
+    AccountUpdate.fundNewAccount(deployerAccount.toPublicKey());
+    contract.sendTokens(zkAppAddress, deployerAccount.toPublicKey(), sendAmount);
+});
+await send_txn.prove();
+await send_txn.sign([deployerAccount, zkAppPrivateKey]).send();
+
+console.log('sent');
+
+console.log(
+    contract.totalAmountInCirculation.get() +
+    ' ' +
+    Mina.getAccount(zkAppAddress).tokenSymbol
+);
