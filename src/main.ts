@@ -25,3 +25,16 @@ if (proofsEnabled) {
 }
 
 console.log('compiled');
+
+
+
+console.log('deploying...');
+const contract = new MPCtoken(zkAppAddress);
+const deploy_txn = await Mina.transaction(deployerAccount.toPublicKey(), () => {
+    AccountUpdate.fundNewAccount(deployerAccount.toPublicKey());
+    contract.deploy({ verificationKey, zkappKey: zkAppPrivateKey });
+});
+await deploy_txn.prove();
+await deploy_txn.sign([deployerAccount]).send();
+
+console.log('deployed');
