@@ -85,3 +85,16 @@ console.log(
     ' ' +
     Mina.getAccount(zkAppAddress).tokenSymbol
 );
+
+console.log(
+    'deployer tokens:',
+    Mina.getBalance(
+        deployerAccount.toPublicKey(),
+        contract.token.id
+    ).value.toBigInt()
+);
+
+console.log(
+    'zkapp tokens:',
+    Mina.getBalance(zkAppAddress, contract.token.id).value.toBigInt()
+);
