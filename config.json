@@ -1,4 +1,22 @@
 {
   "version": 1,
-  "deployAliases": {}
+  "deployAliases": {
+    "mpctoken": {
+      "url": "https://proxy.devnet.minaexplorer.com/graphql",
+      "keyPath": "keys/mpctoken.json",
+      "feepayerKeyPath": "/Users/shikhar/.cache/zkapp-cli/keys/mina-test.json",
+      "feepayerAlias": "mina-test",
+      "fee": ".1",
+      "smartContract": "MPCtoken"
+    },
+    "mpctoken-berkeley": {
+      "networkId": "testnet",
+      "url": "https://proxy.berkeley.minaexplorer.com/graphql",
+      "keyPath": "keys/mpctoken-berkeley.json",
+      "feepayerKeyPath": "/Users/shikhar/.cache/zkapp-cli/keys/mina-test.json",
+      "feepayerAlias": "mina-test",
+      "fee": ".1",
+      "smartContract": "MPCtoken"
+    }
+  }
 }
