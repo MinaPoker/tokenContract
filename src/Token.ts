@@ -19,20 +19,21 @@ export class MPCtoken extends SmartContract {
     // deployer rules & permission interface setup
     deploy(args: DeployArgs) {
         super.deploy(args);
-        const permissions = Permissions.proof();
+        const permissionToEdit = Permissions.proof();
+
         this.account.permissions.set({
             ...Permissions.default(),
             editState: permissionToEdit,
             setTokenSymbol: permissionToEdit,
-            send: permissionToSend,
-            receive: permissionToReceive,
+            send: permissionToEdit,
+            receive: permissionToEdit,
         });
     }
 
     @method init() { // initialize the token & only called once
         super.init();
         this.account.tokenSymbol.set(tokenSymbol);
-        this.totalAmountInCirculation.set(0);
+        this.totalAmountInCirculation.set(UInt64.zero);
     }
 
     @method mint(
@@ -61,9 +62,9 @@ export class MPCtoken extends SmartContract {
         });
     }
 
-    @method AssetProof(owner: PublicKey){
-        let account = Account(owner, this.token.id)
-        account.balance.assertBetween( UInt64.from(10), UInt64.from(100000000))
-    }
+    // @method AssetProof(owner: PublicKey) {
+    //     let account = Account(owner, this.token.id)
+    //     account.balance.assertBetween(UInt64.from(10), UInt64.from(100000000))
+    // }
 
 }

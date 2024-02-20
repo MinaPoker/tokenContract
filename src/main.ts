@@ -1,4 +1,4 @@
-import { MPCtoken } from './Token.ts';
+import { MPCtoken } from './Token';
 import {
     Mina,
     PrivateKey,

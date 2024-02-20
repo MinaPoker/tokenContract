@@ -1,3 +1,3 @@
-import { Token } from './Token.js';
+import { MPCtoken } from './Token';
 
-export { Token };
+export { MPCtoken };
