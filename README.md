@@ -33,6 +33,6 @@ npm run coverage
 ## Deployed Contract
  
  <!-- add a image -->
-     ![Deployed Contract](/images/deploy-image.png "image")
+     ![Deployed Contract](./images/deploy-image.png)
 
 
