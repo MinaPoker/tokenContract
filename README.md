@@ -28,3 +28,11 @@ npm run coverage
 ## License
 
 [Apache-2.0](LICENSE)
+
+
+## Deployed Contract
+ 
+ <!-- add a image -->
+     ![Deployed Contract](/images/deploy-image.png "image")
+
+
