@@ -1,6 +1,10 @@
 # Mina zkApp: Tokencontract
 
-This template uses TypeScript.
+## MPCFaucet Repo - https://github.com/MinaPoker/MPCfaucet
+(Adding link here as i have missed it on submission form for easy look)
+
+This is repo for creating a MPC token. It includes a simple token contract that can be used as a starting point for creating your own zkApp.
+
 
 ## How to build
 
